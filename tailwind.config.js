@@ -21,7 +21,7 @@ module.exports = {
     },
     fontFamily: {
       body: [
-        'Inter',
+        'Raleway',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -38,7 +38,7 @@ module.exports = {
         'Noto Color Emoji',
       ],
       sans: [
-        'Inter',
+        'Raleway',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
