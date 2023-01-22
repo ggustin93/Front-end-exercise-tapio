@@ -12,7 +12,7 @@ class Form extends Component {
     e.preventDefault()
 
     const post = {
-      author: this.authorRef.current.value,
+      userId: this.authorRef.current.value,
       title: this.titleRef.current.value,
       body: this.contentRef.current.value,
       category: this.categoryRef.current.value,

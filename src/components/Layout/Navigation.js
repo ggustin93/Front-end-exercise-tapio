@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Navigation = () => {
+  const menu = document.getElementById('navbar-default')
+  const toggle = () => menu.classList.toggle('hidden')
   return (
     <div class="mb-20">
       <nav
@@ -22,7 +24,7 @@ const Navigation = () => {
             </a>
           </Link>
           <button
-            data-collapse-toggle="navbar-default"
+            onClick={toggle}
             type="button"
             class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
@@ -43,11 +45,11 @@ const Navigation = () => {
               ></path>
             </svg>
           </button>
-          <div class="w-full md:block md:w-auto" id="navbar-default">
+          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
               <li>
                 <Link
-                  class="block py-2 pl-3 pr-4 text-white rounded hover:underline"
+                  class="block py-2 pl-3 pr-4 text-white text-sm rounded hover:underline"
                   to={'/'}
                 >
                   List All Posts
@@ -61,7 +63,7 @@ const Navigation = () => {
               </li>
               <li>
                 <Link
-                  class="block py-2 pl-3 pr-4 text-white rounded hover:underline"
+                  class="block py-2 pl-3 pr-4 text-white text-sm rounded hover:underline"
                   to={'/create'}
                 >
                   Add New Post

@@ -94,7 +94,7 @@ class Post extends Component {
           <h2 class="capitalize	mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title.length > 40 ? `${title.substr(0, 40)}...` : title}
           </h2>
-          <p class="capitalize mb-5 font-light text-gray-500 dark:text-gray-400">
+          <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
             {body.length > 300 ? `${body.substr(0, 300)}...` : body}
           </p>
           <div class="flex justify-between items-center">
