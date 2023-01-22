@@ -28,12 +28,12 @@ class Post extends Component {
   }
 
   render() {
-    const { id, title, body, category, datestamp } = this.props.info
+    const { id, userId, title, body, category, datestamp } = this.props.info
 
     return (
       <>
         <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-          <div class="flex justify-between items-center mb-5 text-gray-500">
+          <div class="uppercase flex justify-between items-center mb-5 text-gray-500">
             <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
               <svg
                 class="mr-1 w-3 h-3"
@@ -47,16 +47,18 @@ class Post extends Component {
                   clip-rule="evenodd"
                 />
               </svg>
-              {category ? category : 'Category'}
+              {category ? category : 'No Category'}
             </span>
-            <span class="text-sm">{moment(datestamp).fromNow()}</span>
+            <span class="text-sm">
+              {moment(datestamp).format('DD/MM/yy, hh:mm')}
+            </span>
           </div>
-          <div class="flex items-end mb-6">
+          <div class="flex justify-end mb-6">
             <Link to={`/edit/${id}`}>
-              <button class="px-2 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium">
+              <button class="px-2 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium p-1 mr-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
+                  class="h-5 w-5 mr-1"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -71,10 +73,10 @@ class Post extends Component {
               </button>
             </Link>
             <Link onClick={this.confirmDeletion}>
-              <button class="px-2 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium">
+              <button class="px-2 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-full ml-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
+                  class="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -102,7 +104,12 @@ class Post extends Component {
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
                 alt="Jese Leos avatar"
               />
-              <span class="font-medium dark:text-white">Jese Leos</span>
+              <span class="font-medium dark:text-white">
+                Jese Leos{' '}
+                <span class="font-light text-gray-500 text-sm">
+                  [ userId {userId} ]{' '}
+                </span>
+              </span>
             </div>
             <Link
               to={`/post/${id}`}
