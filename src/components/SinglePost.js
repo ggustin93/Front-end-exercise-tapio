@@ -17,7 +17,7 @@ class SinglePost extends Component {
         <div class="m:10">
           <div class="rounded-lg p-6 w-full max-w-xl m-20 content-center mx-auto">
             <Link to={`/`}>
-              <button class="mt-20 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
+              <button class="mt-20 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import { withRouter } from 'react-router-dom'
 
 class EditPost extends Component {
   authorRef = React.createRef()
@@ -17,6 +19,17 @@ class EditPost extends Component {
       id: this.props.post.id,
     }
     this.props.editPost(post)
+
+    Swal.fire({
+      title: 'Post modifié!',
+      text: 'Le post a été modifié avec succès.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.value) {
+        this.props.history.push('/')
+      }
+    })
   }
 
   loadForm = () => {
@@ -68,7 +81,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.titleRef}
-                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-tertiary-500 focus:border-tertiary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500 mb-5"
                   defaultValue={title}
                 />
               </div>
@@ -109,7 +122,7 @@ class EditPost extends Component {
                   Your post
                 </label>
                 <textarea
-                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-tertiary-500 focus:border-tertiary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500 mb-5"
                   placeholder="Write your thoughts here..."
                   rows="7"
                   cols="25"
@@ -132,7 +145,7 @@ class EditPost extends Component {
                 </label>
                 <select
                   ref={this.categoryRef}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary-500 focus:border-tertiary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500"
                   defaultValue={category}
                 >
                   <option value="cars">Cars</option>
@@ -145,7 +158,7 @@ class EditPost extends Component {
 
               <div class="flex items-center border-teal-500 py-2 mt-10">
                 <button
-                  class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-md border-4 text-white py-2 px-10 rounded-md"
+                  class="bg-tertiary-400 hover:bg-tertiary-600 border-tertiary-400 hover:border-tertiary-600 text-md border-4 text-white py-2 px-10 rounded-md"
                   type="submit"
                 >
                   Save
@@ -163,4 +176,4 @@ class EditPost extends Component {
   }
 }
 
-export default EditPost
+export default withRouter(EditPost)

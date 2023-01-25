@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+import { collection, getDocs, querySnapshot } from 'firebase/firestore'
 
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import axios from 'axios'
@@ -9,41 +13,102 @@ import Posts from './Posts'
 import SinglePost from './SinglePost'
 import Form from './Form'
 import EditPost from './EditPost'
+import { withRouter } from 'react-router-dom'
 
-class Router extends Component {
-  state = {
-    posts: [],
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',
+  authDomain: 'my-tapio-assignment.firebaseapp.com',
+  projectId: 'my-tapio-assignment',
+  storageBucket: 'my-tapio-assignment.appspot.com',
+  messagingSenderId: '53061974198',
+  appId: '1:53061974198:web:d1b344a07c19027f45ce17',
+  measurementId: 'G-QX7RMJPSTP',
+}
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig)
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore()
+
+const generateAPost = async () => {
+  try {
+    // Récupération de données aléatoires d'un post depuis l'API jsonplaceholder
+    const { data } = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${
+        Math.floor(Math.random() * 100) + 1
+      }`,
+    )
+
+    // Création d'un nouveau post dans Firestore
+    const postRef = await db.collection('posts').add({
+      title: data.title,
+      body: data.body,
+      userId: data.userId,
+    })
+    console.log('Post ajouté avec ID: ', postRef.id)
+    Swal.fire({
+      title: 'Post généré!',
+      text: 'Le post a été généré avec succès.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.value) {
+        window.location = '/'
+      }
+    })
+  } catch (error) {
+    console.error('Error adding document: ', error)
   }
+}
 
-  componentDidMount() {
-    this.getPost()
-  }
+function Router() {
+  const [posts, setPosts] = useState([])
 
-  getPost = () => {
+  useEffect(() => {
+    getPost()
+  }, [])
+
+  const getPostJSON = () => {
     axios.get(`https://jsonplaceholder.typicode.com/posts`).then((res) => {
       let data = res.data.splice(0, 10)
-      this.setState({
-        posts: data,
-      })
+      setPosts(data)
     })
   }
 
-  deletePost = (id) => {
-    //console.log(id);
+  const getPost = () => {
+    db.collection('posts')
+      .get()
+      .then((querySnapshot) => {
+        let data = []
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, ...doc.data() })
+        })
+        console.log('TAAAAAAAA', data)
+        setPosts(data)
+      })
+  }
+
+  const deletePostJSON = (id) => {
     axios
       .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((res) => {
         if (res.status === 200) {
-          const posts = [...this.state.posts]
-          let result = posts.filter((post) => post.id !== id)
-          this.setState({
-            posts: result,
-          })
+          const currentPosts = [...posts]
+          let result = currentPosts.filter((post) => post.id !== id)
+          setPosts(result)
         }
       })
   }
 
-  createPost = (post) => {
+  const deletePost = async (id) => {
+    await db.collection('posts').doc(id).delete()
+    getPost()
+  }
+
+  const createPostJSON = (post) => {
     axios
       .post(`https://jsonplaceholder.typicode.com/posts`, { post })
       .then((res) => {
@@ -53,14 +118,22 @@ class Router extends Component {
           let postId = { id: res.data.id }
           const newPost = Object.assign({}, res.data.post, postId)
 
-          this.setState((prevState) => ({
-            posts: [...prevState.posts, newPost],
-          }))
+          setPosts((prevState) => [...prevState, newPost])
         }
       })
   }
 
-  editPost = (postUpdate) => {
+  const createPost = async (post) => {
+    const postRef = db.collection('posts').doc()
+    const postToSave = {
+      id: postRef.id,
+      ...post,
+    }
+    await postRef.set(postToSave)
+    getPost()
+  }
+
+  const editPostJSON = (postUpdate) => {
     const { id } = postUpdate
 
     axios
@@ -75,72 +148,67 @@ class Router extends Component {
 
           let postId = res.data.id
 
-          const posts = [...this.state.posts]
+          const currentPosts = [...posts]
 
-          const postEdit = posts.findIndex((post) => postId === post.id)
+          const postEdit = currentPosts.findIndex((post) => postId === post.id)
 
-          posts[postEdit] = postUpdate
-          this.setState({
-            posts,
-          })
+          currentPosts[postEdit] = postUpdate
+          setPosts(currentPosts)
         }
       })
   }
 
-  render() {
-    return (
-      <BrowserRouter>
-        <section>
-          <Navigation />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return (
-                  <Posts
-                    posts={this.state.posts}
-                    deletePost={this.deletePost}
-                  />
-                )
-              }}
-            />
-
-            <Route
-              exact
-              path="/post/:postId"
-              render={(props) => {
-                let idPost = props.location.pathname.replace('/post/', '')
-
-                const posts = this.state.posts
-                let filter
-                filter = posts.filter((post) => post.id === Number(idPost))
-
-                return <SinglePost post={filter[0]} />
-              }}
-            />
-            <Route
-              exact
-              path="/create"
-              render={() => {
-                return <Form createPost={this.createPost} />
-              }}
-            />
-            <Route
-              exact
-              path="/edit/:postId"
-              render={(props) => {
-                let idPost = props.location.pathname.replace('/edit/', '')
-                const posts = this.state.posts
-                let filter
-                filter = posts.filter((post) => post.id === Number(idPost))
-                return <EditPost post={filter[0]} editPost={this.editPost} />
-              }}
-            />
-          </Switch>
-        </section>
-      </BrowserRouter>
-    )
+  const editPost = async (post) => {
+    const postRef = db.collection('posts').doc(post.id)
+    await postRef.update(post)
+    getPost()
   }
+
+  return (
+    <BrowserRouter>
+      <section>
+        <Navigation />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <Posts posts={posts} deletePost={deletePost} />
+            }}
+          />
+
+          <Route
+            exact
+            path="/post/:postId"
+            render={(props) => {
+              let idPost = props.location.pathname.replace('/post/', '')
+
+              let filter = posts.filter((post) => post.id === idPost)
+
+              return <SinglePost post={filter[0]} />
+            }}
+          />
+          <Route
+            exact
+            path="/create"
+            render={() => {
+              return <Form createPost={createPost} />
+            }}
+          />
+          <Route
+            exact
+            path="/edit/:postId"
+            render={(props) => {
+              let idPost = props.location.pathname.replace('/edit/', '')
+              let filter = posts.filter((post) => post.id === idPost)
+              return <EditPost post={filter[0]} editPost={editPost} />
+            }}
+          />
+        </Switch>
+      </section>
+    </BrowserRouter>
+  )
 }
+
 export default Router
+export { generateAPost }
