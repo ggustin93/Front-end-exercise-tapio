@@ -50,8 +50,9 @@ const generateAPost = async () => {
     })
     console.log('Post ajouté avec ID: ', postRef.id)
     Swal.fire({
-      title: 'Post généré!',
-      text: 'Le post a été généré avec succès.',
+      title: 'Post généré 🚀',
+      html:
+        "Le post a été généré aléatoirement, avec succès, avec l'API <code> jsonplaceholder</code>. La page va se rafraîchir 🤓",
       icon: 'success',
       confirmButtonText: 'OK',
     }).then((result) => {

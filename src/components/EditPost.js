@@ -21,7 +21,7 @@ class EditPost extends Component {
     this.props.editPost(post)
 
     Swal.fire({
-      title: 'Post modifié!',
+      title: 'Post modifié 🚀',
       text: 'Le post a été modifié avec succès.',
       icon: 'success',
       confirmButtonText: 'OK',

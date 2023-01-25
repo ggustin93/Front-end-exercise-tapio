@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import { withRouter } from 'react-router-dom'
 
 class Form extends Component {
   //create refs
@@ -19,6 +21,17 @@ class Form extends Component {
     }
 
     this.props.createPost(post)
+
+    Swal.fire({
+      title: 'Post créé 🚀',
+      text: 'Le post a été créé avec succès.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.value) {
+        this.props.history.push('/')
+      }
+    })
   }
 
   render() {
@@ -150,4 +163,4 @@ class Form extends Component {
     )
   }
 }
-export default Form
+export default withRouter(Form)
