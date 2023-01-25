@@ -32,15 +32,15 @@ class Posts extends Component {
     return (
       <section class="bg-gray-100 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-            <h2 class="animate-bounce mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-5">
+            <h2 class="mt-10 mb-3 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               Our Blog
             </h2>
             <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
               We use an agile approach to test assumptions and connect with the
               needs of your audience early and often.
             </p>
-            <div class="inline-flex mt-5">
+            <div class="inline-flex sm:mb-3">
               <Link to={`/create`}>
                 <button class="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-500 hover:bg-primary-500 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
                   <svg

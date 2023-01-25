@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import moment from 'moment'
 
 import { collection, getDocs, querySnapshot } from 'firebase/firestore'
 
@@ -33,6 +34,9 @@ const app = firebase.initializeApp(firebaseConfig)
 // Initialize Cloud Firestore and get a reference to the service
 const db = firebase.firestore()
 
+const capitalizeFirstLowercaseRest = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
 const generateAPost = async () => {
   try {
     // Récupération de données aléatoires d'un post depuis l'API jsonplaceholder
@@ -41,12 +45,32 @@ const generateAPost = async () => {
         Math.floor(Math.random() * 100) + 1
       }`,
     )
+    const categories = [
+      'Renewable Energy',
+      'Transportation',
+      'Waste Management',
+      'Water Conservation',
+      'Biodiversity',
+      'Sustainable Agriculture',
+      'Air Quality',
+      'Sustainable Building',
+    ]
+
+    const randomIndex = Math.floor(Math.random() * categories.length)
+    const rcategory = categories[randomIndex]
+
+    const randomNumber = Math.floor(Math.random() * 100)
+    const randomImageUrl = `https://picsum.photos/id/${randomNumber}/650/300/`
 
     // Création d'un nouveau post dans Firestore
     const postRef = await db.collection('posts').add({
       title: data.title,
-      body: data.body,
+      body: capitalizeFirstLowercaseRest(data.body),
       userId: data.userId,
+      category: rcategory,
+      avatar: `https://i.pravatar.cc/${randomNumber}`,
+      image: randomImageUrl,
+      datestamp: moment().format('DD/MM/YYYY, HH:mm'),
     })
     console.log('Post ajouté avec ID: ', postRef.id)
     Swal.fire({

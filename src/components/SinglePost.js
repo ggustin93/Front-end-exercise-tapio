@@ -2,22 +2,27 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
-import Divider from '@material-ui/core/Divider'
-import Paper from '@material-ui/core/Paper'
-import renderHTML from 'react-render-html'
-
 class SinglePost extends Component {
   showPost = (props) => {
     if (!props.post) return null
 
-    const { title, author, userId, body, category, datestamp } = this.props.post
+    const {
+      title,
+      author,
+      avatar,
+      image,
+      userId,
+      body,
+      category,
+      datestamp,
+    } = this.props.post
 
     return (
       <React.Fragment>
-        <div class="m:10">
-          <div class="rounded-lg p-6 w-full max-w-xl m-20 content-center mx-auto">
+        <div class="">
+          <div class="rounded-lg p-20 w-full max-w-xl content-center mx-auto border-2">
             <Link to={`/`}>
-              <button class="mt-20 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
+              <button class="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -50,31 +55,26 @@ class SinglePost extends Component {
                 </svg>
                 {category ? category : 'Category'}
               </span>
-              <span class="text-sm">
-                {moment(datestamp).format('DD/MM/yy, hh:mm')}
-              </span>
             </div>
 
-            <h2 className="capitalize text-3xl font-medium text-gray-800 mb">
+            <h2 className="capitalize text-3xl font-medium text-gray-800 mb-8">
               {title}
             </h2>
 
-            <div className="my-4 mt-10 mb-10">
-              <p className="normal-case text-gray-800"> {body}</p>
+            <div className="my-4 mb-5">
+              <img class="mb-8 rounded-md" src={image} alt="blog_image" />
+
+              <p className="normal-case text-gray-800 mb-8"> {body}</p>
             </div>
 
-            <div class="flex items-center space-x-4">
-              <img
-                class="w-7 h-7 rounded-full"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                alt="Jese Leos avatar"
-              />
-              <span class="font-medium dark:text-white">
-                Jese Leos{' '}
-                <span class="font-light text-gray-500 text-sm">
-                  [ userId {userId} ]{' '}
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <img class="w-7 h-7 rounded-full" src={avatar} alt="avatar" />
+                <span class="font-medium dark:text-white">
+                  JSON Doe {userId}
                 </span>
-              </span>
+              </div>
+              <span class="text-sm text-gray-500"> {datestamp} </span>
             </div>
           </div>
         </div>
