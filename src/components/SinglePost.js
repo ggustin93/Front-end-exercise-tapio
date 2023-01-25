@@ -18,7 +18,7 @@ class SinglePost extends Component {
     return (
       <React.Fragment>
         <div class="">
-          <div class="rounded-lg p-20 w-full max-w-xl content-center mx-auto border-2">
+          <div class="rounded-lg w-full max-w-xl content-center mx-auto">
             <Link to={`/`}>
               <button class="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
                 <svg

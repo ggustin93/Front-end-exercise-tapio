@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import Navigation from './Navigation'
 import Posts from './Posts'
 import SinglePost from './SinglePost'
-import Form from './Form'
+import CreatePost from './CreatePost'
 import EditPost from './EditPost'
 
 // Your web app's Firebase configuration
@@ -243,8 +243,8 @@ function Router() {
             exact
             path="/create"
             render={() => {
-              // Pass the createPost function as a prop to the Form component
-              return <Form createPost={createPost} />
+              // Pass the createPost function as a prop to the CreatePost component
+              return <CreatePost createPost={createPost} />
             }}
           />
           <Route

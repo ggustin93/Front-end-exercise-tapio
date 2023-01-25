@@ -8,13 +8,14 @@ class Posts extends Component {
     return (
       <section class="bg-gray-100 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-5">
-            <h2 class="mt-10 mb-3 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          <div class="mx-auto max-w-screen-sm text-center lg:mb-16">
+            <h2 class="text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-5">
               Our Blog
             </h2>
             <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              We use an agile approach to test assumptions and connect with the
-              needs of your audience early and often.
+              This coding project is a assignment I completed with pleasure and
+              enthusiasm as part of my application for a front-end developer
+              position at Tapio. I hope that you will enjoy this blog 🍃
             </p>
             <div class="inline-flex sm:mb-3">
               <Link to={`/create`}>
@@ -32,7 +33,7 @@ class Posts extends Component {
                     />
                   </svg>
 
-                  <span> Create a post</span>
+                  <span class="uppercase text-sm"> Create </span>
                 </button>
               </Link>
               <Link to={`/`}>
@@ -48,7 +49,7 @@ class Posts extends Component {
                   >
                     <path d="M6 3a3 3 0 00-3 3v2.25a3 3 0 003 3h2.25a3 3 0 003-3V6a3 3 0 00-3-3H6zM15.75 3a3 3 0 00-3 3v2.25a3 3 0 003 3H18a3 3 0 003-3V6a3 3 0 00-3-3h-2.25zM6 12.75a3 3 0 00-3 3V18a3 3 0 003 3h2.25a3 3 0 003-3v-2.25a3 3 0 00-3-3H6zM17.625 13.5a.75.75 0 00-1.5 0v2.625H13.5a.75.75 0 000 1.5h2.625v2.625a.75.75 0 001.5 0v-2.625h2.625a.75.75 0 000-1.5h-2.625V13.5z" />
                   </svg>
-                  <span> Generate a post</span>
+                  <span class="uppercase text-sm"> Generate </span>
                 </button>
               </Link>
             </div>

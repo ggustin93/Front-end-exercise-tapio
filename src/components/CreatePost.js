@@ -214,7 +214,7 @@ class CreatePost extends Component {
             <div className="form-group mt-10">
               <button
                 type="submit"
-                class="bg-tertiary-500 hover:bg-tertiary-600 border-tertiary-500 hover:border-tertiary-600 text-md border-4 text-white py-2 px-10 rounded-md"
+                class="inline-flex items-center font-medium bg-white border-2 border-tertiary-500 hover:bg-tertiary-500 hover:text-white text-gray-800 font-bold py-2 px-8 rounded-md"
               >
                 Create
               </button>

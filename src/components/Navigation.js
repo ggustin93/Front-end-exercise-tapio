@@ -15,7 +15,7 @@ const Navigation = () => {
             <a class="flex items-center">
               <img
                 src="https://tapioview.s3.amazonaws.com/static/img/tapio-iframe-white.webp?AWSAccessKeyId=AKIAXL23VGMDKSIWWZ5W&Signature=pfgtDnoMblXM1UFyLBL97ae1UgM%3D&Expires=1989762355"
-                class="h-16 mr-3 sm:h-9"
+                class="md:h-15 mr-3 h-12"
                 alt="Tapio Logo"
               />
               <span class="hidden:sm self-center text-xl font-semibold whitespace-nowrap dark:text-white">

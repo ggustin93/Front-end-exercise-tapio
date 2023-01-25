@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { withRouter } from 'react-router-dom'
+import moment from 'moment'
 
 class EditPost extends Component {
   // Create references for form input fields
@@ -9,6 +10,8 @@ class EditPost extends Component {
   titleRef = React.createRef()
   contentRef = React.createRef()
   categoryRef = React.createRef()
+  avatarRef = React.createRef()
+  imageRef = React.createRef()
 
   // Function to handle form submission and update post
   editPost = (e) => {
@@ -20,6 +23,9 @@ class EditPost extends Component {
       body: this.contentRef.current.value,
       category: this.categoryRef.current.value,
       id: this.props.post.id,
+      avatar: this.avatarRef.current.value,
+      image: this.imageRef.current.value,
+      datestamp: moment().format('DD/MM/YYYY, HH:mm'),
     }
     // Call the editPost function passed down as a prop
     this.props.editPost(post)
@@ -40,7 +46,15 @@ class EditPost extends Component {
   // Function to load form with current post information
   loadForm = () => {
     if (!this.props.post) return null
-    const { title, author, userId, body, category } = this.props.post
+    const {
+      title,
+      author,
+      userId,
+      body,
+      category,
+      avatar,
+      image,
+    } = this.props.post
 
     return (
       <>
@@ -67,7 +81,6 @@ class EditPost extends Component {
                 <span> Back</span>
               </button>
             </Link>
-
             <h2 class="pt-5 mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-10 sm:text-base">
               Edit a post
             </h2>
@@ -85,10 +98,11 @@ class EditPost extends Component {
                   Title:
                 </label>
                 <input
+                  placeholder="Give me a nice title !"
                   type="text"
                   ref={this.titleRef}
-                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-tertiary-500 focus:border-tertiary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500 mb-5"
                   defaultValue={title}
+                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                 />
               </div>
 
@@ -107,16 +121,15 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.authorRef}
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  class="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
                   id="grid-first-name"
-                  placeholder="Jane"
+                  placeholder="Your name 🤷🏻‍♂️"
                   defaultValue={userId}
                 />
               </div>
 
               <div className="form-group">
                 <label
-                  for="message"
                   class="block
                 uppercase
                 tracking-wide
@@ -125,10 +138,55 @@ class EditPost extends Component {
                 font-bold
                 mb-2"
                 >
+                  URL of your Avatar
+                </label>
+                <input
+                  type="text"
+                  ref={this.avatarRef}
+                  class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  id="grid-first-name"
+                  placeholder="Image Address (URL)"
+                  defaultValue={avatar}
+                />
+              </div>
+
+              <div className="form-group">
+                <label
+                  class="block
+                uppercase
+                tracking-wide
+                text-gray-700
+                text-xs
+                font-bold
+                mb-2"
+                >
+                  URL of your Blog Post Image
+                </label>
+                <input
+                  type="text"
+                  ref={this.imageRef}
+                  class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  id="grid-first-name"
+                  placeholder="Image Address (URL)"
+                  defaultValue={image}
+                />
+              </div>
+
+              <div className="form-group">
+                <label
+                  for="message"
+                  class="block
+              uppercase
+              tracking-wide
+              text-gray-700
+              text-xs
+              font-bold
+              mb-2"
+                >
                   Your post
                 </label>
                 <textarea
-                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-tertiary-500 focus:border-tertiary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500 mb-5"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   placeholder="Write your thoughts here..."
                   rows="7"
                   cols="25"
@@ -140,32 +198,39 @@ class EditPost extends Component {
               <div className="form-group">
                 <label
                   class="block
-                uppercase
-                tracking-wide
-                text-gray-700
-                text-xs
-                font-bold
-                mb-2"
+                  uppercase
+                  tracking-wide
+                  text-gray-700
+                  text-xs
+                  font-bold
+                  mb-2"
                 >
                   Category:{' '}
                 </label>
                 <select
                   ref={this.categoryRef}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary-500 focus:border-tertiary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500"
                   defaultValue={category}
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
-                  <option value="cars">Cars</option>
-                  <option value="nature">Nature</option>
-                  <option value="it">IT</option>
-                  <option value="books">Books</option>
-                  <option value="sport">Sport</option>
+                  <option value="Renewable Energy">Renewable Energy</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Waste Management">Waste Management</option>
+                  <option value="Water Conservation">Water Conservation</option>
+                  <option value="Biodiversity">Biodiversity</option>
+                  <option value="Sustainable Agriculture">
+                    Sustainable Agriculture
+                  </option>
+                  <option value="Air Quality">Air Quality</option>
+                  <option value="Sustainable Building">
+                    Sustainable Building
+                  </option>
                 </select>
               </div>
 
-              <div class="flex items-center border-teal-500 py-2 mt-10">
+              <div className="form-group mt-10">
                 <button
-                  class="bg-tertiary-400 hover:bg-tertiary-600 border-tertiary-400 hover:border-tertiary-600 text-md border-4 text-white py-2 px-10 rounded-md"
                   type="submit"
+                  class="inline-flex items-center font-medium bg-white border-2 border-tertiary-500 hover:bg-tertiary-500 hover:text-white text-gray-800 font-bold py-2 px-8 rounded-md"
                 >
                   Save
                 </button>

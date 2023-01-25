@@ -13,7 +13,7 @@ class Post extends Component {
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
-      cancelButtonColor: '#eeeeee',
+      cancelButtonColor: '#231F1D',
       confirmButtonText: 'Yes, delete',
       cancelButtonText: 'No, Cancel',
     }).then((result) => {
