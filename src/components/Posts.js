@@ -17,7 +17,7 @@ class Posts extends Component {
               enthusiasm as part of my application for a front-end developer
               position at Tapio. I hope that you will enjoy this blog 🍃
             </p>
-            <div class="inline-flex sm:mb-3">
+            <div class="inline-flex py-4 md:py-1">
               <Link to={`/create`}>
                 <button class="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-500 hover:bg-primary-500 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
                   <svg

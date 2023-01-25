@@ -121,7 +121,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.authorRef}
-                  class="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   id="grid-first-name"
                   placeholder="Your name 🤷🏻‍♂️"
                   defaultValue={userId}
@@ -143,7 +143,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.avatarRef}
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   id="grid-first-name"
                   placeholder="Image Address (URL)"
                   defaultValue={avatar}
@@ -165,7 +165,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.imageRef}
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white mb-5"
+                  class="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   id="grid-first-name"
                   placeholder="Image Address (URL)"
                   defaultValue={image}

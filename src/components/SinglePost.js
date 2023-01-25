@@ -17,7 +17,7 @@ class SinglePost extends Component {
 
     return (
       <React.Fragment>
-        <div class="">
+        <div class="px-10 md:px-1">
           <div class="rounded-lg w-full max-w-xl content-center mx-auto">
             <Link to={`/`}>
               <button class="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
@@ -65,7 +65,7 @@ class SinglePost extends Component {
               <p className="normal-case text-gray-800 mb-8"> {body}</p>
             </div>
 
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between mb-10">
               <div class="flex items-center space-x-4">
                 <img class="w-7 h-7 rounded-full" src={avatar} alt="avatar" />
                 <span class="font-medium dark:text-white">

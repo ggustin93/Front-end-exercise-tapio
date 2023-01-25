@@ -70,7 +70,7 @@ const generateAPost = async () => {
       category: rcategory,
       avatar: `https://i.pravatar.cc/${randomNumber}`,
       image: randomImageUrl,
-      datestamp: moment().format('DD/MM/YYYY, HH:mm'),
+      datestamp: moment().format('DD/MM/YYYY'),
     })
 
     console.log('Post ajouté avec ID: ', postRef.id)

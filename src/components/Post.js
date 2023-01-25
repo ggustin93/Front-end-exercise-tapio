@@ -104,7 +104,7 @@ class Post extends Component {
                 clip-rule="evenodd"
               />
             </svg>
-            {category ? category : 'No Category'}
+            <span class="text-sm"> {category ? category : 'No Category'} </span>
           </span>
           <span class="text-sm">{datestamp}</span>
         </div>
