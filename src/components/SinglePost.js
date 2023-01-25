@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import moment from 'moment'
 import { Link } from 'react-router-dom'
 
 class SinglePost extends Component {
@@ -8,7 +7,6 @@ class SinglePost extends Component {
 
     const {
       title,
-      author,
       avatar,
       image,
       userId,

@@ -1,8 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { collection, getDocs, querySnapshot } from 'firebase/firestore'
 
-// Your web app's Firebase configuration
+// My web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',

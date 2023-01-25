@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Post from './Post'
-import './Post.css'
 
 class Listing extends Component {
   showPosts = () => {

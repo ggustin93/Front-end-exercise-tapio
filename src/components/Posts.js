@@ -1,33 +1,9 @@
 import React, { Component } from 'react'
 import Listing from './Listing'
 import { Link } from 'react-router-dom'
-
-import axios from 'axios'
-
-import './Post.css'
 import { generateAPost } from './Router'
 
 class Posts extends Component {
-  /* generateAPost = async () => {
-    try {
-      console.log('Youpi it works')
-      // Récupération de données aléatoires d'un post depuis l'API jsonplaceholder
-      const { data } = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts/1',
-      )
-
-      // Création d'un nouveau post dans Firestore
-      const postRef = await db.collection('posts').add({
-        title: data.title,
-        body: data.body,
-        userId: data.userId,
-      })
-      console.log('Post ajouté avec ID: ', postRef.id)
-    } catch (error) {
-      console.error('Error adding document: ', error)
-    }
-  } */
-
   render() {
     return (
       <section class="bg-gray-100 dark:bg-gray-900">

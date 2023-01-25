@@ -4,13 +4,16 @@ import Swal from 'sweetalert2'
 import { withRouter } from 'react-router-dom'
 
 class EditPost extends Component {
+  // Create references for form input fields
   authorRef = React.createRef()
   titleRef = React.createRef()
   contentRef = React.createRef()
   categoryRef = React.createRef()
 
+  // Function to handle form submission and update post
   editPost = (e) => {
     e.preventDefault()
+    // Create a new post object with updated information
     const post = {
       userId: this.authorRef.current.value,
       title: this.titleRef.current.value,
@@ -18,8 +21,10 @@ class EditPost extends Component {
       category: this.categoryRef.current.value,
       id: this.props.post.id,
     }
+    // Call the editPost function passed down as a prop
     this.props.editPost(post)
 
+    // Show success message and redirect to homepage
     Swal.fire({
       title: 'Post modifié 🚀',
       text: 'Le post a été modifié avec succès.',
@@ -32,6 +37,7 @@ class EditPost extends Component {
     })
   }
 
+  // Function to load form with current post information
   loadForm = () => {
     if (!this.props.post) return null
     const { title, author, userId, body, category } = this.props.post
@@ -176,4 +182,5 @@ class EditPost extends Component {
   }
 }
 
+// To give EditPost component access to the router's history and allow back navigation
 export default withRouter(EditPost)

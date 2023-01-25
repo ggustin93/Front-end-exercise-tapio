@@ -18,8 +18,8 @@ const Navigation = () => {
                 class="h-16 mr-3 sm:h-9"
                 alt="Tapio Logo"
               />
-              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                Tapio Assignment
+              <span class="hidden:sm self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                Tapio
               </span>
             </a>
           </Link>
