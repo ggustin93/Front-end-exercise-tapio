@@ -12,10 +12,10 @@ import Posts from './Posts'
 import SinglePost from './SinglePost'
 import CreatePost from './CreatePost'
 import EditPost from './EditPost'
-
+import { db } from './firebase'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+/* const firebaseConfig = {
   apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',
   authDomain: 'my-tapio-assignment.firebaseapp.com',
   projectId: 'my-tapio-assignment',
@@ -23,13 +23,13 @@ const firebaseConfig = {
   messagingSenderId: '53061974198',
   appId: '1:53061974198:web:d1b344a07c19027f45ce17',
   measurementId: 'G-QX7RMJPSTP',
-}
+} */
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig)
+// const app = firebase.initializeApp(firebaseConfig)
 
 // Initialize Cloud Firestore and get a reference to the service
-const db = firebase.firestore()
+// const db = firebase.firestore()
 
 const capitalizeFirstLowercaseRest = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()

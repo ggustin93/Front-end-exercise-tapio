@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-// My web app's Firebase configuration
+// Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',
@@ -15,3 +15,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore()
+
+export { db }

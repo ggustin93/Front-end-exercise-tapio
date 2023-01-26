@@ -19,7 +19,7 @@ class Listing extends Component {
   }
 
   render() {
-    return <div class="grid gap-8 lg:grid-cols-2">{this.showPosts()}</div>
+    return <div className="grid gap-8 lg:grid-cols-2">{this.showPosts()}</div>
   }
 }
 

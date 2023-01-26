@@ -17,38 +17,38 @@ class SinglePost extends Component {
 
     return (
       <React.Fragment>
-        <div class="px-10 md:px-1">
-          <div class="rounded-lg w-full max-w-xl content-center mx-auto">
+        <div className="px-10 md:px-1">
+          <div className="rounded-lg w-full max-w-xl content-center mx-auto">
             <Link to={`/`}>
-              <button class="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
+              <button className="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  class="w-6 h-6 mr-2"
+                  className="w-6 h-6 mr-2"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
 
                 <span> All Posts</span>
               </button>
             </Link>
-            <div class="flex justify-between items-center mb-5 text-gray-500">
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+            <div className="flex justify-between items-center mb-5 text-gray-500">
+              <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                 <svg
-                  class="mr-1 w-3 h-3"
+                  className="mr-1 w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
                 {category ? category : 'Category'}
@@ -60,19 +60,23 @@ class SinglePost extends Component {
             </h2>
 
             <div className="my-4 mb-5">
-              <img class="mb-8 rounded-md" src={image} alt="blog_image" />
+              <img className="mb-8 rounded-md" src={image} alt="blog_image" />
 
               <p className="normal-case text-gray-800 mb-8"> {body}</p>
             </div>
 
-            <div class="flex items-center justify-between mb-10">
-              <div class="flex items-center space-x-4">
-                <img class="w-7 h-7 rounded-full" src={avatar} alt="avatar" />
-                <span class="font-medium dark:text-white">
+            <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center space-x-4">
+                <img
+                  className="w-7 h-7 rounded-full"
+                  src={avatar}
+                  alt="avatar"
+                />
+                <span className="font-medium dark:text-white">
                   JSON Doe {userId}
                 </span>
               </div>
-              <span class="text-sm text-gray-500"> {datestamp} </span>
+              <span className="text-sm text-gray-500"> {datestamp} </span>
             </div>
           </div>
         </div>
