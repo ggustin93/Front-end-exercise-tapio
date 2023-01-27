@@ -46,15 +46,7 @@ class EditPost extends Component {
   // Function to load form with current post information
   loadForm = () => {
     if (!this.props.post) return null
-    const {
-      title,
-      author,
-      userId,
-      body,
-      category,
-      avatar,
-      image,
-    } = this.props.post
+    const { title, userId, body, category, avatar, image } = this.props.post
 
     return (
       <>

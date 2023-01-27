@@ -149,7 +149,7 @@ function Router() {
       const randomImageUrl = `https://picsum.photos/id/${randomNumber}/650/300/`
 
       // Creating a new post in Firestore
-      const postRef = await db.collection('posts').add({
+      await db.collection('posts').add({
         title: data.title,
         body: capitalizeFirstLowercaseRest(data.body),
         userId: data.userId,
@@ -178,7 +178,6 @@ function Router() {
 
   const editPostJSON = (postUpdate) => {
     const { id } = postUpdate
-
     // Making a PUT request to the jsonplaceholder API to update a specific post
     axios
       .put(`https://jsonplaceholder.typicode.com/posts/${id}`, { postUpdate })
