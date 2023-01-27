@@ -50,10 +50,10 @@ class EditPost extends Component {
 
     return (
       <>
-        <div className="m-10">
+        <div className="mx-10">
           <form
             onSubmit={this.editPost}
-            className="w-full max-w-lg m-10 content-center mx-auto"
+            className="w-full max-w-lg mb-5 content-center mx-auto"
           >
             <Link to={`/`}>
               <button className="mt-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">

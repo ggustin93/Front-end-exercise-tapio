@@ -16,7 +16,7 @@ class Posts extends Component {
               enthusiasm as part of my application for a front-end developer
               position at Tapio. I hope that you will enjoy this blog 🍃
             </p>
-            <div className="inline-flex py-4 md:py-1">
+            <div className="inline-flex pb-3 md:py-1">
               <Link to={`/create`}>
                 <button
                   aria-label="Create a post"
