@@ -2,20 +2,18 @@ import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import moment from 'moment'
-
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-
 import Navigation from './Navigation'
 import Posts from './Posts'
 import SinglePost from './SinglePost'
 import CreatePost from './CreatePost'
 import EditPost from './EditPost'
-import { db } from './firebase'
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-/* const firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',
   authDomain: 'my-tapio-assignment.firebaseapp.com',
   projectId: 'my-tapio-assignment',
@@ -23,71 +21,14 @@ import { db } from './firebase'
   messagingSenderId: '53061974198',
   appId: '1:53061974198:web:d1b344a07c19027f45ce17',
   measurementId: 'G-QX7RMJPSTP',
-} */
-
+}
 // Initialize Firebase
-// const app = firebase.initializeApp(firebaseConfig)
-
+firebase.initializeApp(firebaseConfig)
 // Initialize Cloud Firestore and get a reference to the service
-// const db = firebase.firestore()
+const db = firebase.firestore()
 
 const capitalizeFirstLowercaseRest = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
-
-const generateAPost = async () => {
-  try {
-    // Fetching random post data from the jsonplaceholder API
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${
-        Math.floor(Math.random() * 100) + 1
-      }`,
-    )
-    const categories = [
-      'Renewable Energy',
-      'Transportation',
-      'Waste Management',
-      'Water Conservation',
-      'Biodiversity',
-      'Sustainable Agriculture',
-      'Air Quality',
-      'Sustainable Building',
-    ]
-
-    // Randomly selecting a category
-    const randomIndex = Math.floor(Math.random() * categories.length)
-    const rcategory = categories[randomIndex]
-
-    // Generating a random image URL
-    const randomNumber = Math.floor(Math.random() * 100)
-    const randomImageUrl = `https://picsum.photos/id/${randomNumber}/650/300/`
-
-    // Creating a new post in Firestore
-    const postRef = await db.collection('posts').add({
-      title: data.title,
-      body: capitalizeFirstLowercaseRest(data.body),
-      userId: data.userId,
-      category: rcategory,
-      avatar: `https://i.pravatar.cc/${randomNumber}`,
-      image: randomImageUrl,
-      datestamp: moment().format('DD/MM/YYYY'),
-    })
-
-    console.log('Post ajouté avec ID: ', postRef.id)
-    Swal.fire({
-      title: 'Post généré 🚀',
-      html:
-        "Le post a été généré aléatoirement, avec succès, avec l'API <code> jsonplaceholder</code>. La page va se rafraîchir 🤓",
-      icon: 'success',
-      confirmButtonText: 'OK',
-    }).then((result) => {
-      if (result.value) {
-        window.location = '/'
-      }
-    })
-  } catch (error) {
-    console.error('Error adding document: ', error)
-  }
 }
 
 // functional component, to get and set posts to state
@@ -108,16 +49,20 @@ function Router() {
   }
 
   // function to get posts from Firebase Cloud Firestore
-  const getPost = () => {
-    db.collection('posts')
-      .get()
-      .then((querySnapshot) => {
-        let data = []
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() })
-        })
-        setPosts(data)
+  const getPost = async () => {
+    try {
+      const querySnapshot = await db
+        .collection('posts')
+        .orderBy('datestamp', 'desc')
+        .get()
+      let data = []
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() })
       })
+      setPosts(data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const deletePostJSON = (id) => {
@@ -176,6 +121,61 @@ function Router() {
     getPost()
   }
 
+  const generateAPost = async () => {
+    try {
+      // Fetching random post data from the jsonplaceholder API
+      const { data } = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts/${
+          Math.floor(Math.random() * 100) + 1
+        }`,
+      )
+      const categories = [
+        'Renewable Energy',
+        'Transportation',
+        'Waste Management',
+        'Water Conservation',
+        'Biodiversity',
+        'Sustainable Agriculture',
+        'Air Quality',
+        'Sustainable Building',
+      ]
+
+      // Randomly selecting a category
+      const randomIndex = Math.floor(Math.random() * categories.length)
+      const rcategory = categories[randomIndex]
+
+      // Generating a random image URL
+      const randomNumber = Math.floor(Math.random() * 100)
+      const randomImageUrl = `https://picsum.photos/id/${randomNumber}/650/300/`
+
+      // Creating a new post in Firestore
+      const postRef = await db.collection('posts').add({
+        title: data.title,
+        body: capitalizeFirstLowercaseRest(data.body),
+        userId: data.userId,
+        category: rcategory,
+        avatar: `https://i.pravatar.cc/${randomNumber}`,
+        image: randomImageUrl,
+        datestamp: moment().format('DD/MM/YYYY, HH:mm:ss'),
+      })
+
+      console.log('Post ajouté avec titre: ', data.title)
+      Swal.fire({
+        type: 'success',
+        title: 'Blog post generated 🚀',
+        html:
+          'The post has been generated randomly, successfully, with help of <code> jsonplaceholder</code> API',
+        icon: 'success',
+      }).then((result) => {
+        if (result.value) {
+          getPost()
+        }
+      })
+    } catch (error) {
+      console.error('Error adding document: ', error)
+    }
+  }
+
   const editPostJSON = (postUpdate) => {
     const { id } = postUpdate
 
@@ -222,8 +222,14 @@ function Router() {
             exact
             path="/"
             render={() => {
-              // Pass the posts state and deletePost function as props to the Posts component
-              return <Posts posts={posts} deletePost={deletePost} />
+              // Pass the posts state and deletePost, generateAPost function as props to the Posts component
+              return (
+                <Posts
+                  posts={posts}
+                  deletePost={deletePost}
+                  generateAPost={generateAPost}
+                />
+              )
             }}
           />
 
@@ -266,4 +272,4 @@ function Router() {
 }
 
 export default Router
-export { generateAPost }
+// export { generateAPost }

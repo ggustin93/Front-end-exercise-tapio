@@ -8,18 +8,21 @@ class Post extends Component {
     const { id } = this.props.info
 
     Swal.fire({
-      title: 'Delete this one?',
-      text: 'This action can not be canceled!',
-      type: 'warning',
+      title: 'Delete this blog post ? ⛔️',
+      text: 'Note that this action is irreversible.',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#231F1D',
-      confirmButtonText: 'Yes, delete',
-      cancelButtonText: 'No, Cancel',
+      confirmButtonColor: 'red',
+      cancelButtonColor: 'gray-500',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.value) {
         this.props.deletePost(id)
-        Swal.fire('Press OK to back', 'The post has been deleted', 'success')
+        Swal.fire(
+          'Press OK to back',
+          'The post has been successfully deleted',
+          'success',
+        )
       }
     })
   }
@@ -109,7 +112,7 @@ class Post extends Component {
               {category ? category : 'No Category'}{' '}
             </span>
           </span>
-          <span className="text-sm">{datestamp}</span>
+          <span className="text-sm"> {datestamp.substr(0, 10)} </span>
         </div>
 
         <h2 className="capitalize	mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

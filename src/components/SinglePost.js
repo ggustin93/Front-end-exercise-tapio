@@ -76,7 +76,9 @@ class SinglePost extends Component {
                   JSON Doe {userId}
                 </span>
               </div>
-              <span className="text-sm text-gray-500"> {datestamp} </span>
+              <span className="text-sm text-gray-500">
+                {datestamp.slice(0, 10)}
+              </span>
             </div>
           </div>
         </div>

@@ -32,10 +32,10 @@ class EditPost extends Component {
 
     // Show success message and redirect to homepage
     Swal.fire({
-      title: 'Post modifié 🚀',
-      text: 'Le post a été modifié avec succès.',
+      type: 'success',
+      title: 'Blog post modified 🚀',
+      text: 'The post has been successfully modified.',
       icon: 'success',
-      confirmButtonText: 'OK',
     }).then((result) => {
       if (result.value) {
         this.props.history.push('/')
@@ -61,7 +61,7 @@ class EditPost extends Component {
         <div className="m-10">
           <form
             onSubmit={this.editPost}
-            className="w-full max-w-lg m-20 content-center mx-auto"
+            className="w-full max-w-lg m-10 content-center mx-auto"
           >
             <Link to={`/`}>
               <button className="mt-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
@@ -145,7 +145,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.avatarRef}
-                  className="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
+                  className="block p-2.5 w-full text-sm text-tertiary-400 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   id="grid-first-name"
                   placeholder="Image Address (URL)"
                   defaultValue={avatar}
@@ -167,7 +167,7 @@ class EditPost extends Component {
                 <input
                   type="text"
                   ref={this.imageRef}
-                  className="capitalize block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
+                  className="block p-2.5 w-full text-sm text-tertiary-400 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
                   id="grid-first-name"
                   placeholder="Image Address (URL)"
                   defaultValue={image}

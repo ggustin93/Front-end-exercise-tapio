@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Listing from './Listing'
 import { Link } from 'react-router-dom'
-import { generateAPost } from './Router'
 
 class Posts extends Component {
   render() {
@@ -9,17 +8,17 @@ class Posts extends Component {
       <section className="bg-gray-100 dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center lg:mb-16">
-            <h2 className="text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-5">
+            <h2 className="text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mt-3 mb-4">
               Our Blog
             </h2>
             <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              This coding project is a assignment I completed with pleasure and
+              This coding project is an assignment I completed with pleasure and
               enthusiasm as part of my application for a front-end developer
               position at Tapio. I hope that you will enjoy this blog 🍃
             </p>
             <div className="inline-flex py-4 md:py-1">
               <Link to={`/create`}>
-                <button className="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-500 hover:bg-primary-500 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
+                <button className="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-400 hover:bg-primary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -38,8 +37,8 @@ class Posts extends Component {
               </Link>
               <Link to={`/`}>
                 <button
-                  className="mt-10 ml-2 inline-flex items-center font-medium bg-white border-2 border-tertiary-500 hover:bg-tertiary-500 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
-                  onClick={generateAPost}
+                  className="mt-10 ml-2 inline-flex items-center font-medium bg-white border-2 border-tertiary-400 hover:bg-tertiary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
+                  onClick={this.props.generateAPost}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
