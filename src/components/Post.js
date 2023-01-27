@@ -43,7 +43,10 @@ class Post extends Component {
       <article className="md:p-10 p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="flex justify-end p-1">
           <Link to={`/edit/${id}`}>
-            <button className="px-2 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium p-1 mr-1 rounded-md hover:animate-bounce">
+            <button
+              aria-label="Edit a post"
+              className="px-2 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium p-1 mr-1 rounded-md"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-6"
@@ -61,7 +64,10 @@ class Post extends Component {
             </button>
           </Link>
           <Link to="/#" onClick={this.confirmDeletion}>
-            <button className="px-2 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md ml-1">
+            <button
+              aria-label="Delete a post"
+              className="px-2 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md ml-1"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-6"

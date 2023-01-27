@@ -18,7 +18,8 @@ class Posts extends Component {
             </p>
             <div className="inline-flex py-4 md:py-1">
               <Link to={`/create`}>
-                <button className="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-400 hover:bg-primary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
+                <button               aria-label="Create a post"
+ className="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-400 hover:bg-primary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -37,6 +38,7 @@ class Posts extends Component {
               </Link>
               <Link to={`/`}>
                 <button
+                  aria-label="Generate a post"
                   className="mt-10 ml-2 inline-flex items-center font-medium bg-white border-2 border-tertiary-400 hover:bg-tertiary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
                   onClick={this.props.generateAPost}
                 >
