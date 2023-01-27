@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Navigation = () => {
-  const menu = document.getElementById('navbar-default')
-  const toggle = () => menu.classList.toggle('hidden')
-
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   return (
     <>
@@ -53,6 +50,7 @@ const Navigation = () => {
                 <Link
                   className="block py-2 pl-3 pr-4 text-white text-sm rounded hover:text-primary-400 hover:bg-gray-100"
                   to={'/'}
+                  onClick={() => setNavbarOpen(!navbarOpen)}
                 >
                   List All Posts
                 </Link>
@@ -61,6 +59,7 @@ const Navigation = () => {
                 <Link
                   className="block py-2 pl-3 pr-4 text-white text-sm rounded hover:text-primary-400 hover:bg-gray-100"
                   to={'/create'}
+                  onClick={() => setNavbarOpen(!navbarOpen)}
                 >
                   Add New Post
                 </Link>
