@@ -20,7 +20,7 @@ class Post extends Component {
         this.props.deletePost(id)
         Swal.fire(
           'Press OK to back',
-          'The post has been successfully deleted',
+          'The post has been successfully deleted.',
           'success',
         )
       }

@@ -33,10 +33,10 @@ class CreatePost extends Component {
     this.props.createPost(post)
 
     Swal.fire({
-      title: 'Post créé 🚀',
-      text: 'Le post a été créé avec succès.',
+      type: 'success',
+      title: 'Blog post created 🚀',
+      text: 'The post has been successfully created.',
       icon: 'success',
-      confirmButtonText: 'OK',
     }).then((result) => {
       if (result.value) {
         this.props.history.push('/')

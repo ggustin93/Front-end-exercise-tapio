@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class SinglePost extends Component {
+class ReadPost extends Component {
   showPost = (props) => {
     if (!props.post) return null
 
@@ -90,4 +90,4 @@ class SinglePost extends Component {
   }
 }
 
-export default SinglePost
+export default ReadPost

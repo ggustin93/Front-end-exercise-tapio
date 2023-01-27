@@ -7,7 +7,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Navigation from './Navigation'
 import Posts from './Posts'
-import SinglePost from './SinglePost'
+import ReadPost from './ReadPost'
 import CreatePost from './CreatePost'
 import EditPost from './EditPost'
 
@@ -164,7 +164,7 @@ function Router() {
         type: 'success',
         title: 'Blog post generated 🚀',
         html:
-          'The post has been generated randomly, successfully, with help of <code> jsonplaceholder</code> API',
+          'The post has been generated randomly, successfully, with help of <code> jsonplaceholder</code> API.',
         icon: 'success',
       }).then((result) => {
         if (result.value) {
@@ -240,8 +240,8 @@ function Router() {
               let idPost = props.location.pathname.replace('/post/', '')
               // Filter the posts state to find the matching post
               let filter = posts.filter((post) => post.id === idPost)
-              // Pass the filtered post as a prop to the SinglePost component
-              return <SinglePost post={filter[0]} />
+              // Pass the filtered post as a prop to the ReadPost component
+              return <ReadPost post={filter[0]} />
             }}
           />
           <Route
