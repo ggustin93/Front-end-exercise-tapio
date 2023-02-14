@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+
 import moment from 'moment'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
@@ -11,21 +10,7 @@ import ReadPost from './ReadPost'
 import CreatePost from './CreatePost'
 import EditPost from './EditPost'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyDhwxq04CIeF7226u5k8KRGLsPjk3eazs4',
-  authDomain: 'my-tapio-assignment.firebaseapp.com',
-  projectId: 'my-tapio-assignment',
-  storageBucket: 'my-tapio-assignment.appspot.com',
-  messagingSenderId: '53061974198',
-  appId: '1:53061974198:web:d1b344a07c19027f45ce17',
-  measurementId: 'G-QX7RMJPSTP',
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-// Initialize Cloud Firestore and get a reference to the service
-const db = firebase.firestore()
+import { db } from '../services/APIService'
 
 const capitalizeFirstLowercaseRest = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
@@ -237,11 +222,13 @@ function Router() {
             path="/post/:postId"
             render={(props) => {
               // Extract the postId from the URL
-              let idPost = props.location.pathname.replace('/post/', '')
+              const postId = props.match.params.postId
+
               // Filter the posts state to find the matching post
-              let filter = posts.filter((post) => post.id === idPost)
+              const post = posts.find((post) => post.id === postId)
+
               // Pass the filtered post as a prop to the ReadPost component
-              return <ReadPost post={filter[0]} />
+              return <ReadPost post={post} />
             }}
           />
           <Route
@@ -256,12 +243,12 @@ function Router() {
             exact
             path="/edit/:postId"
             render={(props) => {
-              // Extract the postId from the URL
-              let idPost = props.location.pathname.replace('/edit/', '')
-              // Filter the posts state to find the matching post
-              let filter = posts.filter((post) => post.id === idPost)
+              // Extract the postId from the URL parameter
+              const postId = props.match.params.postId
+              // Find the post with the matching ID
+              const post = posts.find((post) => post.id === postId)
               // Pass the filtered post and editPost function as props to the EditPost component
-              return <EditPost post={filter[0]} editPost={editPost} />
+              return <EditPost post={post} editPost={editPost} />
             }}
           />
         </Switch>
@@ -271,4 +258,3 @@ function Router() {
 }
 
 export default Router
-// export { generateAPost }
