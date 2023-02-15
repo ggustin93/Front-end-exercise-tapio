@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PostList from './PostList'
 import { Link } from 'react-router-dom'
 
-const Posts = (props) => {
+const Blog = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch = (event) => {
@@ -101,4 +101,4 @@ const Posts = (props) => {
   )
 }
 
-export default Posts
+export default Blog

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Navigation from './Navigation'
-import Posts from './Posts'
+import Blog from './Blog'
 import ReadPost from './ReadPost'
 import CreatePost from './CreatePost'
 import EditPost from './EditPost'
@@ -206,9 +206,9 @@ function Router() {
             exact
             path="/"
             render={() => {
-              // Pass the posts state and deletePost, generateAPost function as props to the Posts component
+              // Pass the posts state and deletePost, generateAPost function as props to the Blog component
               return (
-                <Posts
+                <Blog
                   posts={posts}
                   deletePost={deletePost}
                   generateAPost={generateAPost}
