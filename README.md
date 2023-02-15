@@ -1,6 +1,6 @@
 # Report: Front-end interview exercise
 
-This coding project is an assignment I completed with pleasure and enthusiasm as part of my application for a front-end developer position at XXX. I hope that you will enjoy this blog 🍃
+This coding project is an assignment I completed with pleasure and enthusiasm as part of my application for a front-end developer position at Tapio. I hope that you will enjoy this blog 🍃
 
 ## 1. Requirements
 
