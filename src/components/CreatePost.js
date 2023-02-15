@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { withRouter } from 'react-router-dom'
 import moment from 'moment'
+import { getRandomAvatar, getRandomImageUrl } from '../utils/randomData'
+import { categoryOptions } from '../utils/categoryOptions'
 
-const randomNumber = Math.floor(Math.random() * 100)
-const randomImageUrl = `https://picsum.photos/id/${randomNumber}/650/300/`
-const randomAvatar = `https://i.pravatar.cc/${randomNumber}`
-
-function CreatePost(props) {
-  //create refs
+const CreatePost = (props) => {
+  // Create refs for form input fields
   const authorRef = useRef()
   const titleRef = useRef()
   const contentRef = useRef()
@@ -17,9 +15,15 @@ function CreatePost(props) {
   const avatarRef = useRef()
   const imageRef = useRef()
 
+  // Get random avatar and image URL for default values
+  const randomAvatar = getRandomAvatar()
+  const randomImageUrl = getRandomImageUrl()
+
+  // Function to handle form submission and create new post
   const createPost = (e) => {
     e.preventDefault()
 
+    // Create a new post object with form input field values
     const post = {
       userId: authorRef.current.value,
       title: titleRef.current.value,
@@ -30,8 +34,10 @@ function CreatePost(props) {
       datestamp: moment().format('DD/MM/YYYY, HH:mm'),
     }
 
+    // Call the createPost function passed down as a prop
     props.createPost(post)
 
+    // Show success message and redirect to homepage
     Swal.fire({
       type: 'success',
       title: 'Blog post created 🚀',
@@ -43,6 +49,8 @@ function CreatePost(props) {
       }
     })
   }
+
+  // JSX code for rendering the form
   return (
     <div className="mx-10">
       <form
@@ -196,26 +204,21 @@ function CreatePost(props) {
             </label>
             <select
               ref={categoryRef}
+              defaultValue="No Category"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             >
-              <option value="No Category">No Category</option>
-              <option value="Renewable Energy">Renewable Energy</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Waste Management">Waste Management</option>
-              <option value="Water Conservation">Water Conservation</option>
-              <option value="Biodiversity">Biodiversity</option>
-              <option value="Sustainable Agriculture">
-                Sustainable Agriculture
-              </option>
-              <option value="Air Quality">Air Quality</option>
-              <option value="Sustainable Building">Sustainable Building</option>
+              {categoryOptions.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="form-group mt-10">
             <button
               type="submit"
-              className="inline-flex items-center font-medium bg-white border-2 border-tertiary-500 hover:bg-tertiary-500 hover:text-white text-gray-800 font-bold py-2 px-8 rounded-md"
+              className="inline-flex items-center font-medium bg-white border-2 border-tertiary-500 hover:bg-tertiary-500 hover:text-white text-gray-800 py-2 px-8 rounded-md"
             >
               Create
             </button>
