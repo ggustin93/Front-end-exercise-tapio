@@ -22,14 +22,17 @@ const Blog = (props) => {
           <p className="font-light text-gray-600 sm:text-xl dark:text-gray-400">
             This coding project is an assignment I completed with pleasure and
             enthusiasm as part of my application for a front-end developer
-            position at Tapio. I hope that you will enjoy this blog 🍃
+            position at Tapio. I hope that you will enjoy this blog{' '}
+            <span role="img" aria-label="Icone feuille">
+              🍃
+            </span>
           </p>
 
           <div className="inline-flex pb-3 md:py-1">
             <Link to={`/create`}>
               <button
                 aria-label="Create a post"
-                className="mt-10 mr-2 inline-flex items-center font-medium bg-white border-2 border-primary-400 hover:bg-primary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
+                className="mt-10 mr-2 inline-flex items-center bg-white border-2 border-primary-400 hover:bg-primary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +53,7 @@ const Blog = (props) => {
             <Link to={`/`}>
               <button
                 aria-label="Generate a post"
-                className="mt-10 ml-2 inline-flex items-center font-medium bg-white border-2 border-tertiary-400 hover:bg-tertiary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
+                className="mt-10 ml-2 inline-flex items-center bg-white border-2 border-tertiary-400 hover:bg-tertiary-400 hover:text-white text-gray-800 font-bold py-2 px-4 rounded-md"
                 onClick={props.generateAPost}
               >
                 <svg
@@ -66,20 +69,20 @@ const Blog = (props) => {
             </Link>
           </div>
           <div className="flex items-center justify-center pb-3 px-6 md:py-1">
-            <div class="w-full relative">
-              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="w-full relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   ></path>
                 </svg>

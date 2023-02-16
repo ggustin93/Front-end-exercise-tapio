@@ -75,7 +75,7 @@ const CreatePost = (props) => {
             <span> Back</span>
           </button>
         </Link>
-        <h2 className="pt-5 mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-10 sm:text-base">
+        <h2 className="pt-5 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-10 sm:text-base">
           Create a post
         </h2>
         <div className="w-full">
@@ -181,7 +181,7 @@ const CreatePost = (props) => {
             </label>
             <textarea
               required
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 focus:border-primary-500 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 mb-5"
               placeholder="Write your thoughts here..."
               rows="7"
               cols="25"

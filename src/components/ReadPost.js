@@ -11,7 +11,7 @@ const ReadPost = ({ post }) => {
     <div className="px-10 md:px-1">
       <div className="rounded-lg w-full max-w-xl content-center mx-auto">
         <Link to="/">
-          <button className="mt-10 mb-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
+          <button className="mt-10 inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline mb-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
