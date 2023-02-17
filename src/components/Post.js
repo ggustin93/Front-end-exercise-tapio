@@ -30,7 +30,6 @@ const Post = (props) => {
     }).then((result) => {
       if (result.value) {
         props.deletePost(id)
-        // Show success message after post is deleted
         Swal.fire(
           'Press OK to back',
           'The post has been successfully deleted.',

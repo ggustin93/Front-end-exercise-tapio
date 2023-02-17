@@ -107,7 +107,7 @@ export const generateAPost = async (setPosts) => {
 
     if (data) {
       // Creating a new post in Firestore
-      await db.collection('posts').add({
+      const post = {
         title: data.title,
         body: capitalizeOnlyFirst(data.body),
         userId: data.userId,
@@ -115,21 +115,16 @@ export const generateAPost = async (setPosts) => {
         avatar: getRandomAvatar(),
         image: getRandomImageUrl(),
         datestamp: moment().format('DD/MM/YYYY, HH:mm:ss'),
-      })
-
+      }
+      await createPost(post, setPosts)
       // Displaying a success message to the user
-      const result = await Swal.fire({
+      await Swal.fire({
         type: 'success',
         title: 'Blog post generated 🚀',
         html:
           'The post has been generated randomly, successfully, with help of <code> jsonplaceholder</code> API.',
         icon: 'success',
       })
-
-      // Refreshing the post list after the user closes the message
-      if (result.value) {
-        getPosts(setPosts)
-      }
     } else {
       console.error(
         'Error adding document: Data is undefined or does not have a title property.',

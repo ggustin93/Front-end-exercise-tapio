@@ -14,7 +14,7 @@ import {
   generateAPost,
 } from '../services/FirebaseService'
 
-function Router() {
+const Router = () => {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
