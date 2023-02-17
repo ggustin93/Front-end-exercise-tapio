@@ -15,6 +15,7 @@ import {
 } from '../services/FirebaseService'
 
 const Router = () => {
+  // Set up state to hold the posts
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -23,14 +24,20 @@ const Router = () => {
   }, [])
 
   return (
+    // Set up the router with BrowserRouter
     <BrowserRouter>
       <section>
+        {/* Add the Navigation component */}
         <Navigation />
+
+        {/* Set up the routes with Switch */}
         <Switch>
+          {/* Set up the root route */}
           <Route
             exact
             path="/"
             render={() => (
+              // Render the Blog component with the posts, deletePost function, and generateAPost function as props
               <Blog
                 posts={posts}
                 deletePost={(postId) =>
@@ -43,6 +50,7 @@ const Router = () => {
             )}
           />
 
+          {/* Set up the route for individual posts */}
           <Route
             exact
             path="/post/:postId"
@@ -58,10 +66,12 @@ const Router = () => {
             }}
           />
 
+          {/* Set up the route for creating a new post */}
           <Route
             exact
             path="/create"
             render={() => (
+              // Render the CreatePost component with the createPost function as a prop
               <CreatePost
                 createPost={(post) =>
                   createPost(post, (updatedPosts) => setPosts(updatedPosts))
@@ -70,6 +80,7 @@ const Router = () => {
             )}
           />
 
+          {/* Set up the route for editing a post */}
           <Route
             exact
             path="/edit/:postId"
@@ -81,6 +92,7 @@ const Router = () => {
               const post = posts.find((post) => post.id === postId)
 
               // Pass the post and editPost function as props to the EditPost component
+              // calls the editPost method from the FirebaseService file passing the edited post data and a callback function to update the posts state when the edit is successful. The posts state is updated by calling the setPosts function with the updatedPosts parameter passed to the callback function.
               return (
                 <EditPost
                   post={post}
